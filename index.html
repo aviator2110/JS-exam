@@ -7,6 +7,19 @@
     <script defer type="module" src="index.js"></script>
 </head>
 <body>
-    <p>Hello world</p>
+    <div id="content">
+        <form id="add-task-form">
+            <label>
+                <span>Task name:</span>
+                <input type="text" name="name" placeholder="Enter task name">
+            </label>
+            <label>
+                <span>Task description: </span>
+                <input type="text" name="description" placeholder="Enter task description">
+            </label>
+            <button type="button">Add task</button>
+        </form>
+        <ul id="players-list"></ul>
+    </div>
 </body>
 </html>

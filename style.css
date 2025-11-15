@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("./background.jpg");
+    display: flex;
+    justify-content: center;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("./tasks-background.jpg");
+    background-size: contain;
+    width: 70%;
+    height: 918px;
+}
+
+#add-task-form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 4px;
+
+        input {
+            border: none;
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            transform: scale(1.1);
+            transition: 300ms;
+        }
+    }
+
+    button {
+        align-self: center;
+        border: none;
+        border-radius: 6px;
+        width: 100px;
+    }
+
+    button:hover {
+        transform: scale(1.2);
+        transition: 300ms;
+    }
+}
