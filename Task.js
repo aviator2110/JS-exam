@@ -35,6 +35,10 @@ export class Task {
         return this.#isComplete;
     }
 
+    get idNumber(){
+        return Task.#idNumber;
+    }
+
 
     editTask(){
 
