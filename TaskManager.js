@@ -12,4 +12,8 @@ export class TaskManager {
     sortByNameAndDate(){
 
     }
+
+    deleteTask(task){
+
+    }
 }
