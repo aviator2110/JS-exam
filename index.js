@@ -1,35 +1,4 @@
-class Task {
-    #id;
-    #name;
-    #description;
-    #creationDate;
-    #isComplete;
+import { Task } from "./Task.js";
+import { TaskManager } from "./TaskManager.js";
 
-    editTask(){
-
-    }
-
-    deleteTask(){
-
-    }
-
-    changeCompleteStatus(){
-
-    }
-}
-
-class TaskManager {
-    #allTasksArray = [];
-
-    addTask(task){
-
-    }
-
-    sortByComplete(){
-
-    }
-
-    sortByNameAndDate(){
-
-    }
-}
+console.log("Hello JavaScript!");
