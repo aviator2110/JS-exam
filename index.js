@@ -1,16 +1,12 @@
 import { Task } from "./Task.js";
 import { TaskManager } from "./TaskManager.js";
 
-const taskManager = new TaskManager();
-
 const hideFormButton = document.getElementById("hide-form");
 const addTaskForm = document.getElementById("add-task-form");
 
 addTaskForm.style.display = "none";
 
 hideFormButton.addEventListener("click", (e) => {
-    hideFormButton.style.transition = "1000ms";
-
     if(addTaskForm.style.display === "none") {
         addTaskForm.style.display = "flex";
     }
@@ -24,4 +20,21 @@ hideFormButton.addEventListener("click", (e) => {
     else {
         hideFormButton.textContent = "add task";
     }
+})
+
+const form = document.querySelector('#add-task-form');
+const tasksList = document.querySelector('#tasks-list');
+
+TaskManager.tasksListElement = tasksList;
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const taskName = formData.get("name");
+    const taskDescription = formData.get("description");
+
+    const task = new Task(taskName, taskDescription);
+
+    TaskManager.addTask(task);
 })

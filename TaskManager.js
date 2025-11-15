@@ -1,19 +1,19 @@
-import {Task} from "./Task.js";
-
 export class TaskManager {
-    #allTasksArray = [];
+    static #allTasksArray = [];
+    static #tasksListElement = null;
 
     constructor(){
         this.#allTasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
     }
 
-    get allTasksArray(){
-        return this.#allTasksArray;
+    static set tasksListElement(tasksListElement){
+        this.#tasksListElement = tasksListElement;
     }
 
-    addTask(task){
+    static addTask(task){
         this.#allTasksArray.push(task);
         localStorage.setItem("tasks", JSON.stringify(this.#allTasksArray));
+        this.#tasksListElement.append(task.element);
     }
 
     sortByCompleteStatus(){
@@ -24,7 +24,7 @@ export class TaskManager {
 
     }
 
-    deleteTask(task){
+    static deleteTask(task){
         this.#allTasksArray.splice(this.#allTasksArray.indexOf(task), 1);
         localStorage.setItem("tasks", JSON.stringify(this.#allTasksArray));
     }

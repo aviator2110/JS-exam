@@ -1,3 +1,5 @@
+import {TaskManager} from "./TaskManager.js";
+
 export class Task {
     static #idNumber = 0;
 
@@ -6,13 +8,14 @@ export class Task {
     #description;
     #creationDate;
     #isComplete;
+    #element = document.createElement("li");
 
     constructor(name, description){
         this.#name = name;
         this.#description = description;
         this.#creationDate = new Date();
         this.#isComplete = false;
-        this.#id = Task.#idNumber++;
+        this.#id = this.#idNumber++;
     }
 
     get id(){
@@ -39,6 +42,17 @@ export class Task {
         return Task.#idNumber;
     }
 
+    get element(){
+        return this.#element;
+    }
+
+    #createUIElement(name, description){
+        const taskName = document.createTextNode(name + " - " + description);
+        const editButton = document.createElement("button");
+        editButton.textContent = 'Edit';
+
+        this.#element.append(taskName, editButton);
+    }
 
     editTask(){
 
