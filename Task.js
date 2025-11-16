@@ -15,7 +15,8 @@ export class Task {
         this.#description = description;
         this.#creationDate = new Date();
         this.#isComplete = false;
-        this.#id = this.#idNumber++;
+        this.#id = Task.#idNumber++;
+        this.#createUIElement(name, description);
     }
 
     get id(){
@@ -48,10 +49,14 @@ export class Task {
 
     #createUIElement(name, description){
         const taskName = document.createTextNode(name + " - " + description);
+
         const editButton = document.createElement("button");
         editButton.textContent = 'Edit';
 
-        this.#element.append(taskName, editButton);
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = 'Delete';
+
+        this.#element.append(taskName, editButton, deleteButton);
     }
 
     editTask(){
