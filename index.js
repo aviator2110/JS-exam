@@ -1,8 +1,6 @@
 import { Task } from "./Task.js";
 import { TaskManager } from "./TaskManager.js";
 
-const taskManager = new TaskManager();
-
 const hideFormButton = document.getElementById("hide-form");
 const addTaskForm = document.getElementById("add-task-form");
 
@@ -27,8 +25,7 @@ hideFormButton.addEventListener("click", (e) => {
 const form = document.querySelector('#add-task-form');
 const tasksList = document.querySelector('#tasks-list');
 
-taskManager.tasksListElement = tasksList;
-
+const taskManager = new TaskManager(tasksList);
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 

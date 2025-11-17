@@ -10,7 +10,7 @@ export class Task {
     #isComplete;
     #element = document.createElement("li");
 
-    constructor(name, description){
+    constructor(name, description) {
         this.#name = name;
         this.#description = description;
         this.#creationDate = new Date();
@@ -57,6 +57,21 @@ export class Task {
         deleteButton.textContent = 'Delete';
 
         this.#element.append(taskName, editButton, deleteButton);
+    }
+
+    toJson(){
+        return {
+            id: this.#id,
+            name: this.#name,
+            description: this.#description,
+            creationDate: this.#creationDate,
+            isComplete: this.#isComplete
+        }
+    }
+
+    fromJson(creationDate, isComplete){
+        this.#creationDate = creationDate;
+        this.#isComplete = isComplete;
     }
 
     editTask(){

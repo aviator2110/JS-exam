@@ -4,24 +4,20 @@ export class TaskManager {
     #allTasksArray = [];
     #tasksListElement = null;
 
-    constructor(){
-        const raw = JSON.parse(localStorage.getItem("tasks")) || [];
+    constructor(listElement) {
+        this.#tasksListElement = listElement;
 
-        this.#allTasksArray = raw.map(obj =>
-            new Task(obj.id, obj.name, obj.description, obj.creationDate, obj.isComplete)
-        );
+        this.#allTasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-        for (let task of this.#allTasksArray) {
+        for (let i = 0; i < this.#allTasksArray.length; i++) {
+            const task = new Task(this.#allTasksArray[i].name, this.#allTasksArray[i].description);
+            task.fromJson(this.#allTasksArray[i].creationDate, this.#allTasksArray[i].isComplete);
             this.#tasksListElement.append(task.element);
         }
     }
 
-    set tasksListElement(tasksListElement){
-        this.#tasksListElement = tasksListElement;
-    }
-
     addTask(task){
-        this.#allTasksArray.push(task);
+        this.#allTasksArray.push(task.toJson());
         localStorage.setItem("tasks", JSON.stringify(this.#allTasksArray));
         this.#tasksListElement.append(task.element);
     }
