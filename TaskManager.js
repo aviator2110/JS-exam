@@ -11,9 +11,11 @@ export class TaskManager {
 
         for (let i = 0; i < this.#allTasksArray.length; i++) {
             const task = new Task(this.#allTasksArray[i].name, this.#allTasksArray[i].description);
-            task.fromJson(this.#allTasksArray[i].creationDate, this.#allTasksArray[i].isComplete);
+            task.fromJson(this.#allTasksArray[i].id, this.#allTasksArray[i].creationDate, this.#allTasksArray[i].isComplete);
             this.#tasksListElement.append(task.element);
         }
+
+        Task.idNumber = this.#allTasksArray[this.#allTasksArray.length - 1].id + 1;
     }
 
     addTask(task){

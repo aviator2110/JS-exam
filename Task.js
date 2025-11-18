@@ -47,6 +47,10 @@ export class Task {
         return this.#element;
     }
 
+    static set idNumber(value){
+        Task.#idNumber = value;
+    }
+
     #createUIElement(name, description){
         const taskName = document.createTextNode(name + " - " + description);
 
@@ -69,9 +73,10 @@ export class Task {
         }
     }
 
-    fromJson(creationDate, isComplete){
+    fromJson(id, creationDate, isComplete){
         this.#creationDate = creationDate;
         this.#isComplete = isComplete;
+        this.#id = id;
     }
 
     editTask(){
