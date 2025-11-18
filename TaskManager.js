@@ -1,26 +1,31 @@
 import { Task } from './Task.js';
 
 export class TaskManager {
-    #allTasksArray = [];
+    static #allTasksArray = [];
     #tasksListElement = null;
 
     constructor(listElement) {
         this.#tasksListElement = listElement;
 
-        this.#allTasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
+        TaskManager.#allTasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-        for (let i = 0; i < this.#allTasksArray.length; i++) {
-            const task = new Task(this.#allTasksArray[i].name, this.#allTasksArray[i].description);
-            task.fromJson(this.#allTasksArray[i].id, this.#allTasksArray[i].creationDate, this.#allTasksArray[i].isComplete);
+        for (let i = 0; i < TaskManager.#allTasksArray.length; i++) {
+            const task = new Task(TaskManager.#allTasksArray[i].name, TaskManager.#allTasksArray[i].description);
+            task.fromJson(TaskManager.#allTasksArray[i].id, TaskManager.#allTasksArray[i].creationDate, TaskManager.#allTasksArray[i].isComplete);
             this.#tasksListElement.append(task.element);
         }
 
-        Task.idNumber = this.#allTasksArray[this.#allTasksArray.length - 1].id + 1;
+        if(TaskManager.#allTasksArray.length > 0){
+            Task.idNumber = TaskManager.#allTasksArray[TaskManager.#allTasksArray.length - 1].id + 1 || 0;
+        }else {
+            Task.idNumber = 0;
+        }
+
     }
 
     addTask(task){
-        this.#allTasksArray.push(task.toJson());
-        localStorage.setItem("tasks", JSON.stringify(this.#allTasksArray));
+        TaskManager.#allTasksArray.push(task.toJson());
+        localStorage.setItem("tasks", JSON.stringify(TaskManager.#allTasksArray));
         this.#tasksListElement.append(task.element);
     }
 
@@ -32,8 +37,15 @@ export class TaskManager {
 
     }
 
-    deleteTask(task){
-        this.#allTasksArray.splice(this.#allTasksArray.indexOf(task), 1);
-        localStorage.setItem("tasks", JSON.stringify(this.#allTasksArray));
+    static deleteTask(id){
+        let index = () => {
+            for (let i = 0; i < TaskManager.#allTasksArray.length; i++) {
+                if (TaskManager.#allTasksArray[i].id === id){
+                    return i;
+                }
+            }
+        }
+        TaskManager.#allTasksArray.splice(index(), 1);
+        localStorage.setItem("tasks", JSON.stringify(TaskManager.#allTasksArray));
     }
 }

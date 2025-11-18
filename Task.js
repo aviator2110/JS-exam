@@ -60,6 +60,11 @@ export class Task {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = 'Delete';
 
+        deleteButton.addEventListener("click", ()=>{
+            this.#element.remove();
+            TaskManager.deleteTask(this.#id);
+        })
+
         this.#element.append(taskName, editButton, deleteButton);
     }
 
