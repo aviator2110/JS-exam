@@ -26,6 +26,7 @@ const form = document.querySelector('#add-task-form');
 const tasksList = document.querySelector('#tasks-list');
 
 const taskManager = new TaskManager(tasksList);
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 

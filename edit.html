@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit task</title>
+    <link rel="stylesheet" href="editStyle.css">
+    <script defer type="module" src="edit.js"></script>
+</head>
+<body>
+    <h1>Edit task</h1>
+
+    <div id="not-found" class="hidden">
+        <h2>404 — Task Not Found</h2>
+        <button onclick="window.location.href='index.html'">Back to home</button>
+    </div>
+
+    <form id="editForm" class="hidden">
+
+        <label>
+            Task name:
+            <input type="text" id="taskName">
+        </label>
+
+        <label>
+            Task description:
+            <textarea id="taskDescription"></textarea>
+        </label>
+
+        <button type="submit">Save</button>
+        <button type="button" onclick="window.location.href='index.html'">Back</button>
+
+    </form>
+</body>
+</html>

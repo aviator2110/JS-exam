@@ -21,6 +21,7 @@ export class TaskManager {
             Task.idNumber = 0;
         }
 
+        console.log(TaskManager.#allTasksArray.length);
     }
 
     addTask(task){
@@ -47,5 +48,19 @@ export class TaskManager {
         }
         TaskManager.#allTasksArray.splice(index(), 1);
         localStorage.setItem("tasks", JSON.stringify(TaskManager.#allTasksArray));
+    }
+
+    static findById(id){
+        console.log("findById", id);
+        for (let i = 0; i < TaskManager.#allTasksArray.length; i++) {
+            console.log("iteration" + i)
+            if (TaskManager.#allTasksArray[i].id === id){
+                console.log(TaskManager.#allTasksArray[i])
+                return TaskManager.#allTasksArray[i];
+            }
+        }
+        console.log("length" + TaskManager.#allTasksArray.length);
+        console.log("findById did not found");
+        return null;
     }
 }

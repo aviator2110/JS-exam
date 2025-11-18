@@ -57,6 +57,11 @@ export class Task {
         const editButton = document.createElement("button");
         editButton.textContent = 'Edit';
 
+        editButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = `edit.html?id=${this.#id}`;
+        });
+
         const deleteButton = document.createElement("button");
         deleteButton.textContent = 'Delete';
 
