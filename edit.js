@@ -11,8 +11,10 @@ if (!id) {
     notFound.classList.remove("hidden");
 }
 
+const manager = new TaskManager();
+
 // Инициализируем TaskManager (без списка, потому что он здесь не нужен)
-const task = TaskManager.findById(id);
+const task = manager.findById(id);
 
 // Если задача не найдена → 404
 if (!task) {

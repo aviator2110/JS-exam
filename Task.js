@@ -89,8 +89,9 @@ export class Task {
         this.#id = id;
     }
 
-    editTask(){
-
+    editTask(name, description){
+        this.#name = name;
+        this.#description = description;
     }
 
     deleteTask(){
